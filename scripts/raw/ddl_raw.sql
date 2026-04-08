@@ -9,9 +9,28 @@ Script Purpose:
 ===============================================================================
 */
 
--- =================
+-- ======================
+-- product_catalog table
+-- ======================
+
+-- Drop existing tables if they exist
+drop table if exists raw.product_catalog cascade;
+
+-- Create the product_catalog table
+create table raw.product_catalog (
+  product_sku VARCHAR(50),
+  design_number VARCHAR(50),
+  stock_quantity INT,
+  category VARCHAR(50),
+  size VARCHAR(20),
+  color VARCHAR(50),
+  ingestion_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- ======================
 -- amazon_sales table
--- =================
+-- ======================
 
 -- Drop existing tables if they exist
 drop table if exists raw.amazon_sales cascade;
@@ -39,28 +58,11 @@ create table raw.amazon_sales (
   ship_country VARCHAR(50),
   promotion_ids TEXT,
   is_b2b BOOLEAN,
-  fulfillment_service VARCHAR(50)
-);
-
-
--- =================
--- product_catalog table
--- =================
-
--- Drop existing tables if they exist
-drop table if exists raw.product_catalog cascade;
-
--- Create the product_catalog table
-create table raw.product_catalog (
-  product_sku VARCHAR(50),
-  design_number VARCHAR(50),
-  stock_quantity INT,
-  category VARCHAR(50),
-  size VARCHAR(20),
-  color VARCHAR(50)
+  fulfillment_service VARCHAR(50),
+  ingestion_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
 -- Optional comments for traceability
-comment on table raw.amazon_sales is 'Source: Amazon Sale Report.csv';
 comment on table raw.product_catalog is 'Source: Sale Report.csv';
+comment on table raw.amazon_sales is 'Source: Amazon Sale Report.csv';
