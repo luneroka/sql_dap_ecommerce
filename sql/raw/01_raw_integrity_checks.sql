@@ -13,7 +13,7 @@ select
 	count(product_sku)
 from raw.product_catalog
 group by product_sku
-having count(product_sku) > 1 or product_sku is null;
+having count(*) > 1 or product_sku is null;
 -- Observation : Found duplicates and #REF! -> Investigation below
 
 		-- Investigate duplicates and #REF! values found
@@ -68,7 +68,7 @@ group by color;
 -- =========================================================
 
 -- order_id : 
-    -- check for NULLs (duplicates expected on this column)
+    -- check for NULLs
 	select 
 		order_id
 	from raw.amazon_sales
