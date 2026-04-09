@@ -1,7 +1,27 @@
 /* --------------------------------------------------------
--- ANALYTICS DATA TRANSFORMATIONS
+-- ANALYTICS DATA TRANSFORMATIONS (SILVER LAYER)
+--------------------------------------------------------
+-- Purpose:
+-- This script creates cleaned and standardized tables from raw data.
+-- These tables serve as the foundation for downstream data modeling
+-- (dimension and fact tables).
+--
+-- Key principles:
+-- - Raw data is never modified
+-- - Data is cleaned, filtered, and standardized deterministically
+-- - Each table enforces a consistent and reliable structure for analysis
 --------------------------------------------------------
 */
+
+-- Purpose:
+-- Clean and standardize product catalog data.
+-- Grain: 1 row per product record (after filtering and deduplication).
+--
+-- Key transformations:
+-- - Remove invalid SKUs (#REF!, NULL)
+-- - Exclude zero stock artifacts
+-- - Deduplicate rows
+-- - Standardize category, size, and color fields
 
 -- =========================================================
 -- Table: analytics.product_catalog_clean
@@ -43,6 +63,16 @@ standardized as (
 select *
 from standardized
 
+
+-- Purpose:
+-- Clean and standardize transactional sales data.
+-- Grain: 1 row per order line (order_id + product_sku).
+--
+-- Key transformations:
+-- - Remove invalid order_id (NULL)
+-- - Deduplicate exact duplicate rows
+-- - Standardize text fields (status, location, fulfillment, etc.)
+-- - Normalize postal codes and handle empty values
 
 -- =========================================================
 -- Table: analytics.amazon_sales_clean
@@ -113,5 +143,6 @@ standardized as (
 		initcap(trim(fulfillment_service)) as fulfillment_service
 	from deduplicated
 )
+-- 5. Final select
 select *
 from standardized
