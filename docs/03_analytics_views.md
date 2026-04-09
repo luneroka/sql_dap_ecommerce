@@ -1,31 +1,28 @@
-# Analytics View: `v_fact_sales_date`
+# Analytics Views Documentation
 
-## Purpose
+## 1. View: `v_fact_sales_date`
 
-The `v_fact_sales_date` view combines sales facts with detailed date information, enabling easier time-based analysis of sales data. It enriches the sales records with calendar attributes such as year, month, quarter, and weekday names.
+### Purpose
 
-## Description
+To enrich sales data with detailed date attributes for easier time-based analysis.
 
-This view joins the `fact_sales` table with the `dim_date` dimension table on the order date. It provides a comprehensive dataset that includes both sales metrics and date attributes, facilitating analysis by various time periods and calendar segments.
+### Description
 
-## Columns Included
+This view combines the sales facts from `fact_sales` with calendar information from the `dim_date` table by joining on the order date. It provides sales metrics alongside useful date components such as year, month, quarter, and weekday details.
 
-- **From `fact_sales` (`fs`):**
-  - All columns representing sales facts (e.g., sales amount, order details).
-- **From `dim_date` (`dd`):**
-  - `year`: Calendar year of the order date.
-  - `month`: Numeric month.
-  - `day_of_month`: Day of the month.
-  - `quarter`: Fiscal quarter.
-  - `month_name`: Name of the month.
-  - `weekday_name`: Name of the weekday.
-  - `is_weekend`: Boolean indicating if the day is a weekend.
+### Key Columns
 
-## Join Details
+- Sales facts (all columns from `fact_sales`)
+- Date attributes from `dim_date`:
+  - `year`
+  - `month`
+  - `day_of_month`
+  - `quarter`
+  - `month_name`
+  - `weekday_name`
+  - `is_weekend`
 
-- Left join on `fs.order_date = dd.order_date` to attach date attributes to each sales record.
-
-## Example SQL Query
+### SQL Example
 
 ```sql
 CREATE VIEW analytics.v_fact_sales_date AS
@@ -42,3 +39,72 @@ FROM analytics.fact_sales fs
 LEFT JOIN analytics.dim_date dd
     ON fs.order_date = dd.order_date;
 ```
+
+---
+
+## 2. View: `v_fact_sales_usd`
+
+### Purpose
+
+To provide sales data with amounts converted to USD for standardized currency reporting.
+
+### Description
+
+This view builds on `v_fact_sales_date` by converting the sales line amount from the local currency to USD using a fixed exchange rate. It includes key sales and date fields along with the converted USD amount.
+
+### Key Columns
+
+- Sales details:
+  - `order_id`
+  - `product_sku`
+  - `order_date`
+  - `ship_state`
+  - `fulfillment_type`
+  - `quantity`
+  - `line_amount`
+  - `line_amount_usd` (converted)
+  - `ship_service_level`
+  - `order_status`
+  - `courier_status`
+  - `is_b2b`
+- Date attributes:
+  - `year`
+  - `month`
+  - `day_of_month`
+  - `quarter`
+  - `month_name`
+  - `weekday_name`
+  - `is_weekend`
+
+### SQL Example
+
+```sql
+CREATE VIEW analytics.v_fact_sales_usd AS
+SELECT
+    order_id,
+    product_sku,
+    order_date,
+    ship_state,
+    fulfillment_type,
+    quantity,
+    line_amount,
+    ROUND(line_amount / 76.0, 2) AS line_amount_usd,
+    ship_service_level,
+    order_status,
+    courier_status,
+    is_b2b,
+    year,
+    month,
+    day_of_month,
+    quarter,
+    month_name,
+    weekday_name,
+    is_weekend
+FROM analytics.v_fact_sales_date;
+```
+
+---
+
+### Note on Currency Conversion
+
+The USD conversion uses a fixed exchange rate of 76.0. For dynamic or updated rates, consider integrating a currency exchange rate table or API.
