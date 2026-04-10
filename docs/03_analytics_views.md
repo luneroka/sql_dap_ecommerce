@@ -100,7 +100,8 @@ SELECT
     month_name,
     weekday_name,
     is_weekend
-FROM analytics.v_fact_sales_date;
+FROM analytics.v_fact_sales_date
+WHERE order_status != 'Cancelled';
 ```
 
 ---
@@ -108,3 +109,13 @@ FROM analytics.v_fact_sales_date;
 ### Note on Currency Conversion
 
 The USD conversion uses a fixed exchange rate of 76.0. For dynamic or updated rates, consider integrating a currency exchange rate table or API.
+
+## 3. View: `v_fact_sales_usd_with_cancellations`
+
+### Purpose
+
+Add cancelled orders to v_fact_sales_usd.
+
+### Description
+
+This view builds on `v_fact_sales_usd` and simply removes the order_status = 'Cancelled' filter for cancellation rate and dive deep analysis.

@@ -38,4 +38,4 @@ union all
 select 'Distinct Products', count(distinct product_sku) from analytics.v_fact_sales_usd
 union all
 -- Cancellation rate (share of rows with order_status = 'Cancelled')
-select 'Cancellation Rate', round(count(*) filter (where order_status = 'Cancelled')::numeric / count(*), 2) from analytics.v_fact_sales_usd;
+select 'Cancellation Rate', round(count(*) filter (where order_status = 'Cancelled')::numeric / count(*), 2) from analytics.v_fact_sales_usd_with_cancellations;
