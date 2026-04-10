@@ -101,7 +101,7 @@ SELECT
     weekday_name,
     is_weekend
 FROM analytics.v_fact_sales_date
-WHERE order_status != 'Cancelled';
+WHERE order_status != 'Cancelled' AND order_date != '2022-03-31';
 ```
 
 ---

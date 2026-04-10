@@ -79,5 +79,4 @@ group by
 	dm.daily_sales,
     dm.daily_quantity,
     dm.daily_orders
-having dm.order_date != '2022-03-31'
 order by dm.order_date;
