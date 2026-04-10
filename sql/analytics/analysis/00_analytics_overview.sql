@@ -22,7 +22,7 @@ union all
 select 'Total Orders', count(distinct order_id) from analytics.v_fact_sales_usd
 union all
 -- Average number of items per order
-select 'Avg Item Per Order', round(sum(quantity)::numeric / count(distinct order_id), 2) from analytics.v_fact_sales_usd
+select 'Avg Items Per Order', round(sum(quantity)::numeric / count(distinct order_id) filter (where quantity > 0), 2) from analytics.v_fact_sales_usd
 union all
 -- Average order value (USD) computed from order-level totals
 select 'Avg Order Amount', round(avg(order_total), 2) 
