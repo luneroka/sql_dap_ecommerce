@@ -66,8 +66,6 @@ The chart below shows the Pareto distribution of the products grouped by ranking
 
 ![Pareto Distribution](../assets/pareto_chart.png)
 
-Key takeways :
-
 - The chart clearly shows the classic Pareto curve - steep decline in the bars from left to right, with the cumulative line gradually flattening as it approaches 80%
 - 27% of the products (1,972 out of 7,123) represent 80% of the total revenue
 - The first group alone (#1-100) contributes to 20% of the total revenue
@@ -183,28 +181,24 @@ Below is the Top 100 share :
 | -------------- | -------------- | ----------------- |
 | 7,123          | 7,006          | 98.36%            |
 
-Key takeways :
-
 - 98.36% of products individually contribute less than 0.1% of total revenue
 - This indicates a fragmented catalog, where the majority of SKUs generate negligible revenue on their own
 - While hte long tail is large in volume, its economie contribution is highly diluted accross throusands of low-performing products
 
 This confirms a classic marketplace dynamic where a small amount of products drives performence, while the majority of the catalog exists as a long tail with minimal individual impact.
 
-## 3. Stability of Demand Core
+### 2.3. Stability of Demand Core
 
 | current_month_name | overlap_count |
 | ------------------ | ------------- |
 | May                | 6             |
 | June               | 11            |
 
-Key takeways :
-
 - The Top 20 products show low stability between April and May (only 6 products retained), indicating a significant shift in demand
 - Stability improves between May and June (11 products retained), suggesting partial consolidation of top-performing products
 - This pattern aligns with the sales peak observed at the end of April, followed by a reorganization of demand in May
 
-## 4. Churn in Top Products
+### 2.4. Churn in Top Products
 
 | previous_month | churned_products |
 | -------------- | ---------------- |
@@ -212,13 +206,54 @@ Key takeways :
 | 5              | 9                |
 | 6              | 20               |
 
-Key takeways :
-
 - The Top 20 composition shows high turnover, with 45%–100% churn depending on the month transition
 - Revenue is concentrated on the Top 100, but not consistently in the same SKUs
 
-## 5. Final Takeaway
+### 2.5. Final Takeaway
 
 Product concentration exists as shown by the Pareto distribution, where a small number of products drive most of the sales while the vast majority (~98%) contribute marginally at the individual level.
 However, the composition of the top-performing products is highly unstable, with significant churn in the monthly Top 20 rankings.
 This indicates a marketplace with frequent rotation of best-selling items, indicating that demand is driven by a dynamic set of products rather than a persistent core of top-performing items.
+
+## 3. Contribution Analysis
+
+### 3.1. Category Contribution
+
+| category             | total_volume | volume_share | cumulative_volume_share | total_revenue | revenue_share | cumulative_revenue_share |
+| -------------------- | ------------ | ------------ | ----------------------- | ------------- | ------------- | ------------------------ |
+| Kurta                | 46,828       | 42.38%       | 42.38%                  | $297,336      | 31.57%        | 31.57%                   |
+| Kurta Set            | 26,914       | 24.36%       | 66.74%                  | $295,334      | 31.36%        | 62.93%                   |
+| Set                  | 12,775       | 11.56%       | 78.31%                  | $145,213      | 15.42%        | 78.35%                   |
+| Dress                | 9,005        | 8.15%        | 86.46%                  | $91,732       | 9.74%         | 88.09%                   |
+| Top                  | 7,888        | 7.14%        | 93.60%                  | $54,145       | 5.75%         | 93.84%                   |
+| Night Wear           | 2,055        | 1.86%        | 95.46%                  | $14,275       | 1.52%         | 95.35%                   |
+| Western Dress        | 1,349        | 1.22%        | 96.68%                  | $13,154       | 1.40%         | 96.75%                   |
+| Tunic                | 1,246        | 1.13%        | 97.80%                  | $9,340        | 0.99%         | 97.74%                   |
+| Lehenga Choli        | 389          | 0.35%        | 98.16%                  | $6,227        | 0.66%         | 98.40%                   |
+| Blouse               | 809          | 0.73%        | 98.89%                  | $5,501        | 0.58%         | 98.99%                   |
+| Crop Top With Plazzo | 440          | 0.40%        | 99.29%                  | $4,713        | 0.50%         | 99.49%                   |
+| Saree                | 143          | 0.13%        | 99.42%                  | $1,509        | 0.16%         | 99.65%                   |
+| Crop Top             | 184          | 0.17%        | 99.58%                  | $865          | 0.09%         | 99.74%                   |
+| Palazzo              | 156          | 0.14%        | 99.72%                  | $703          | 0.07%         | 99.82%                   |
+| Pant                 | 83           | 0.08%        | 99.80%                  | $468          | 0.05%         | 99.87%                   |
+| Leggings             | 113          | 0.10%        | 99.90%                  | $431          | 0.05%         | 99.91%                   |
+| Kurti                | 27           | 0.02%        | 99.93%                  | $210          | 0.02%         | 99.93%                   |
+| Bottom               | 28           | 0.03%        | 99.95%                  | $181          | 0.02%         | 99.95%                   |
+| Jumpsuit             | 15           | 0.01%        | 99.96%                  | $178          | 0.02%         | 99.97%                   |
+| Ethnic Dress         | 17           | 0.02%        | 99.98%                  | $140          | 0.01%         | 99.99%                   |
+| Cardigan             | 19           | 0.02%        | 100.00%                 | $119          | 0.01%         | 100.00%                  |
+| Dupatta              | 3            | 0.00%        | 100.00%                 | $12           | 0.00%         | 100.00%                  |
+
+- The Top 3 categories drive almost 80% of revenue
+- The Top 3 categories represent variations of the same product type, indicating that the Kurta product family is the primary driver of the business
+
+### 3.2. Fulfillment Method Contribution
+
+| fulfillment_type | total_volume | total_revenue | volume_share | revenue_share |
+| ---------------- | ------------ | ------------- | ------------ | ------------- |
+| Amazon           | 78,087       | $664,557      | 71%          | 71%           |
+| Merchant         | 32,399       | $277,230      | 29%          | 29%           |
+
+- Amazon fulfillment accounts for ~71% of both volume and revenue, while merchant fulfillment represents ~29%
+- The near-identical distribution indicates no significant difference in average order value between fulfillment methods
+- This suggests that fulfillment type does not materially impact revenue generation
