@@ -278,3 +278,22 @@ This indicates a marketplace with frequent rotation of best-selling items, indic
 - This represents a ~36% higher likelihood of cancellation for merchant orders
 - While fulfillment type does not impact revenue generation directly, it significantly affects order reliability and completion
 - This suggests that operational differences between fulfillment methods, such as inventory control or shipping processes, play a key role in order outcomes
+
+## 5. Cancelled Orders
+
+### 5.1. Revenue Impact
+
+| cancelled_revenue | cancelled_revenue_share |
+| ----------------- | ----------------------- |
+| $90,952           | 8.81%                   |
+
+- Cancelled orders represent almost $91K of revenue loss, accounting for 8.81% of total revenue
+
+### 5.2. Loss Drivers
+
+| fulfillment_type | lost_revenue |
+| ---------------- | ------------ |
+| Amazon           | $ 49,022     |
+| Merchant         | $ 41,931     |
+
+- While Merchant-fulfilled orders have a higher cancellation rate, Amazon-fulfilled orders account for a larger share of total revenue loss due to their higher overall volume
