@@ -1,4 +1,5 @@
 /* =======================================================
+-- PRODUCT MIX & CONCENTRATION ANALYSIS
 -- Business questions : 
   -- How stable is the product mix over time, and are sales driven by a consistent set of products or shifting demand?
   -- Are sales concentrated in a small subset of products?

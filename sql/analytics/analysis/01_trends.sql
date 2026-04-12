@@ -1,4 +1,5 @@
 /* =======================================================
+- TRENDS ANALYSIS
 -- Business questions : 
   -- How do sales evolve over time (daily/monthly) ?
   -- Are there identifiable seasonal patterns or trends ?
