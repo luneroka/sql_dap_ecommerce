@@ -215,7 +215,7 @@ Product concentration exists as shown by the Pareto distribution, where a small 
 However, the composition of the top-performing products is highly unstable, with significant churn in the monthly Top 20 rankings.
 This indicates a marketplace with frequent rotation of best-selling items, indicating that demand is driven by a dynamic set of products rather than a persistent core of top-performing items.
 
-## 3. Contribution Analysis
+## 3. Contribution
 
 ### 3.1. Category Contribution
 
@@ -257,3 +257,24 @@ This indicates a marketplace with frequent rotation of best-selling items, indic
 - Amazon fulfillment accounts for ~71% of both volume and revenue, while merchant fulfillment represents ~29%
 - The near-identical distribution indicates no significant difference in average order value between fulfillment methods
 - This suggests that fulfillment type does not materially impact revenue generation
+
+## 4. Fulfillment Performance
+
+### 4.1. Average Order Value by Fulfillment Type
+
+| aov_amazon | aov_merchant |
+| ---------- | ------------ |
+| $9.09      | $9.25        |
+
+- This confirms previous the insight from the fulfillment method contribution analysis, indicating the low impact of fulfillment type over the average order value
+
+### 4.2. Cancellation Rate by Fulfillment Type
+
+| amazon_cancellation_rate | merchant_cancellation_rate |
+| ------------------------ | -------------------------- |
+| 12.87%                   | 17.54%                     |
+
+- Merchant-fulfilled orders have a higher cancellation rate (17.54%) compared to Amazon-fulfilled orders (12.87%)
+- This represents a ~36% higher likelihood of cancellation for merchant orders
+- While fulfillment type does not impact revenue generation directly, it significantly affects order reliability and completion
+- This suggests that operational differences between fulfillment methods, such as inventory control or shipping processes, play a key role in order outcomes
